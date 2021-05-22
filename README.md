@@ -68,15 +68,6 @@ Add following lines to your project `AppDelegate.m` file
 #import <React/RCTRootView.h>
 +++ #import <RNUnity/RNUnity.h>
 
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-   +++ [RNUnity launchWithOptions:launchOptions]; // IMPORTANT to add this before react view creation
-  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
-  ...
-}
-
 +++ - (void)applicationWillResignActive:(UIApplication *)application { [[[RNUnity ufw] appController] applicationWillResignActive: application]; }
 +++ - (void)applicationDidEnterBackground:(UIApplication *)application { [[[RNUnity ufw] appController] applicationDidEnterBackground: application]; }
 +++ - (void)applicationWillEnterForeground:(UIApplication *)application { [[[RNUnity ufw] appController] applicationWillEnterForeground: application]; }
