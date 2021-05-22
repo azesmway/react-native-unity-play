@@ -1,0 +1,31 @@
+{
+  "name": "react-native-unity-play",
+  "version": "0.1.1",
+  "description": "React Native package to use Unity as library with React Native app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "unity"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azesmway/react-native-unity-play.git"
+  },
+  "homepage": "https://github.com/azesmway/react-native-unity-play#README",
+  "author": {
+    "name": "Alexey Zolotaryov",
+    "email": "azesm@me.com",
+    "url": "https://github.com/azesmway"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": "^0.64.0"
+  },
+  "dependencies": {
+    "event-target-shim": "^5.0.1",
+    "xml2js": "^0.4.22"
+  }
+}
