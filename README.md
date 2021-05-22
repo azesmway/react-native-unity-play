@@ -112,20 +112,12 @@ rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0
       implementation project(':unityLibrary')
       implementation files("${project(':unityLibrary').projectDir}/libs/unity-classes.jar")
   	```
-4. Change parent activity in `MainActivity.java` from `ReactActivity` to `UnityReactActivity`
-    ```java
-    import com.wowmaking.rnunity.UnityReactActivity;
-
-    public class MainActivity extends UnityReactActivity {
-        ...
-    }
-    ```
-5. Add strings to `res/values/strings.xml`
+4. Add strings to `res/values/strings.xml`
     ```xml
     <string name="game_view_content_description">Game view</string>
     <string name="unity_root">unity_root</string>
     ```
-6. Update `.MainActivity` into `AndroidManifest.xml`
+5. Update `.MainActivity` into `AndroidManifest.xml`
     ```xml
     <activity
       android:name=".MainActivity"
@@ -135,111 +127,28 @@ rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0
       android:launchMode="singleTask"
     >
     ```
-7. Setup `minSdkVersion` greater than or equal to `19`
-8. Remove `<intent-filter>...</intent-filter>` from AndroidManifest.xml at unityLibrary to leave only integrated version. 
+6. Setup `minSdkVersion` greater than or equal to `19`
+7. Remove `<intent-filter>...</intent-filter>` from AndroidManifest.xml at unityLibrary to leave only integrated version. 
 
 ## Usage
-```javascript
-import { Unity, UnityResponderView } from '@wowmaking/react-native-unity';
 
-Unity.init();
+### Android
+```javascript
+import UnityView from 'react-native-unity-play';
 
 const App = () => {
   return (
-    <View>
-      <!-- UnityResponderView provide all touch events to Unity -->
-      <UnityResponderView />
-      <Touchable onPress={()=>Unity.execCommand('command_name', { /* any specific command data */ })}>Press ME!</Touchable>
-    </View>
-  );
-};
+    <UnityView style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0}} />
+  )
+}
 ```
+### IOS
+```javascript
+import { UnityResponderView } from 'react-native-unity-play';
 
-## JavaScript API
-
-##### **`Unity`** - main module object
-###### Methods:
-1. `init` - initialize `react-native-unity` lib
-    
-    Usage:
-    ```javascript
-    Unity.init(;
-    ```
-2. `execCommand` - send command to Unity
-    Params: 
-    - `name` (`string`) - Unity command name
-    - `data` (`Object`, optional) - Unity command data
-    
-    Return `Promise`
-    Usage:
-    ```javascript
-    Unity.execCommand('command_name', { a: 1, b: 'b', })
-    ```
-3. `addEventListener` - add listener of Unity events
-    Params:
-        - `type` (`string`) - type of Unity event
-        - `listener` (`function`) - function, that's calling on Unity event receiving
-        
-    Usage:
-    ```javascript
-    Unity.addEventListener('event_type', (e) => { console.warn(e); });
-    ```
-4. `removeEventListener` - remove Unity event listener
-   Params:
-        - `type` (`string`) - type of Unity event
-        - `listener` (`function`) - specific listener to remove
-        
-    Usage:
-    ```javascript
-    Unity.addEventListener('event_type', { listener });
-    ```
-    
-##### **`UnityResponderView`** - React-component, that provide all touch events to Unity
-
-## Unity API
-##### **Package namespace is `Wowmaking.RNU`**
-#
-##### **`interface IRNCommandsReceiver`** - interface to receive commands from JaveScript
-###### Methods:
-1. `void HandleCommand(RNCommand command)` - method, that calls from JavaScript
-    Params:
-    - `command` (`RNCommand`) - command object, received from JavaScript
-    
-##### **`RNCommand`** - class of reciving JavaScript commands
-###### Properties
-1. `name` (`string`) - name of received command
-2. `data` (`object`) - data of received command
-###### Methods
-1. `Resolve` - invoke on successful command execution
-    Params:
-    - `data` (`object`, optional) - object, that will receive JavaScript
-        
-    Usage:
-    ```c
-    command.Resolve(new { text = "test", });
-    ```
-2. `Reject` - invoke on unsuccessful command execution
-    Params:
-    - `data` (`object`, optional) - object, that will receive JavaScript
-        
-    Usage:
-    ```c
-    command.Reject(new { text = "test", });
-    ```
-##### **`static RNBridge`**
-###### Methods
-1. `RegisterCommandsReceiver` - add commands reveiver to bridge
-    Params:
-    - `cReceiver` (`IRNCommandsReceiver`) - game object, that implements IRNCommandsReceiver interface
-        
-    Usage:
-    ```c
-    private void Awake()
-    {
-        RNBridge.RegisterCommandsReceiver(this);
-    }
-    ```
-2. `SendEvent` - send event to JavaScript
-    Params:
-    - `name` (`string`) - event name, that receive JavaScript
-    - `data` (`object`) - data object, that receive JavaScript listeners
+const App = () => {
+  return (
+    <UnityResponderView fullScreen={true} style={{width: viewWidth, height: viewHeight}}/>
+  )
+}
+```

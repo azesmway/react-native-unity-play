@@ -12,14 +12,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/azesmway/react-native-unity-play.git"
+    "url": "git+https://github.com/azesmway/react-native-unity-play.git"
   },
   "homepage": "https://github.com/azesmway/react-native-unity-play#README",
-  "author": {
-    "name": "Alexey Zolotaryov",
-    "email": "azesm@me.com",
-    "url": "https://github.com/azesmway"
-  },
+  "author": "Alexey Zolotaryov <azesm@me.com> (https://github.com/azesmway)",
   "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.64.0"
@@ -27,5 +23,8 @@
   "dependencies": {
     "event-target-shim": "^5.0.1",
     "xml2js": "^0.4.22"
+  },
+  "bugs": {
+    "url": "https://github.com/azesmway/react-native-unity-play/issues"
   }
 }
