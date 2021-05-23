@@ -60,6 +60,13 @@ export default class UnityView extends React.Component<UnityViewProps> {
     };
 
     /**
+     * [Deprecated] Use `UnityModule.resume` instead.
+     */
+    public quit() {
+        UnityModule.quit();
+    };
+
+    /**
      * [Deprecated] Use `UnityModule.postMessage` instead.
      */
     public postMessage(gameObject: string, methodName: string, message: string) {

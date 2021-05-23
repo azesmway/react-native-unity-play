@@ -53,7 +53,7 @@ public class RNUnityModule extends ReactContextBaseJavaModule implements UnityEv
 
     @ReactMethod
     public void quit() {
-        UnityUtils.getPlayer().unload();
+        UnityUtils.quit();
     }
 
     @Override

@@ -1,10 +1,7 @@
-import * as React from "react";
-import { requireNativeComponent, ViewProperties, findNodeHandle, NativeModules, NativeSyntheticEvent, View } from 'react-native';
-import * as PropTypes from "prop-types";
-import UnityView, {UnityViewProps} from "./UnityView";
-import {UnityModule} from "./UnityModule";
-import MessageHandler from "./MessageHandler";
-const { ViewPropTypes } = require('react-native');
+// @ts-ignore
+import * as React from 'react';
+// @ts-ignore
+import { requireNativeComponent, NativeModules } from 'react-native';
 
 const { RNUnity } = NativeModules;
 
@@ -22,10 +19,11 @@ export default class UnityResponderView extends React.Component {
     }
 
     public render() {
+        // @ts-ignore
         const { ...props } = this.props;
 
         return (
-            <ResponderView {...props}></ResponderView>
+            <ResponderView {...props} />
         );
     }
 }

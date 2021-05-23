@@ -39,6 +39,10 @@ export interface UnityModule {
      */
     resume(): void;
     /**
+     * Quit the unity player
+     */
+    quit(): void;
+    /**
      * Receive string and json message from unity.
      */
     addMessageListener(listener: (message: string | MessageHandler) => void): number;

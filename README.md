@@ -9,40 +9,41 @@
 
 `$ npm install react-native-unity-play --save`
 
+
+### Before build project in Unity 
+
+#### iOS
+UNITY PLAYER SETTINGS
+
+1. `Multitasking` -> `Requires Fullscreen` -> no selection set !
+2. `Status Bar` -> `Status Bar Hidden` -> no selection set !
+
+#### Android
+
+BUILD SETTINGS
+1. `Export project` -> selection set !
+
+UNITY PLAYER SETTINGS
+1. `Resolution and Presentation` -> `Start in fullscreen mode` -> no selection set !
+2. `Resolution and Presentation` -> `Render outside safe area` -> no selection set !
+
 ### Installation
 
 1. Install package via `npm`
 2. Move your Unity project to `unity` folder at project root
 
-#### Unity (Setup your Unity project first)
-1. Add following line at your `unity/Packages/manifest.json`
-    ```json
-    {
-        ...
-        "com.azesmway.react-native-unity": "file:../../node_modules/react-native-unity-play/unity"
-    }
-    ```
-    
-##### iOS simulator settings
-If you want to test your app at xcode simulator, you need following next steps:
-1. Go to `Menu` -> `Edit` -> `Project setings...` -> `Player` -> `iOS` -> `Other Settings`
-2. Find `Target SDK` setting and select `Simulator SDK`
-
-You ready to debug your app at simulator!
-
-#### iOS
+### iOS
 
 1. Run `pod install`
 2. Build Unity app to `[project_root]/unity/builds/ios`
 3. Add `Unity-iPhone.xcodeproj` to your workspace: `Menu` -> `File` -> `Add Files to [workspace_name]...` -> `[project_root]/unity/builds/ios/Unity-iPhone.xcodeproj`
-4. Add `UnityFramework.framework` to `Embedded Binaries`: 
+4. Add `UnityFramework.framework` to `Frameworks, Libraries, and Embedded Content`: 
     - select `your_app` target in workspace
-    - in `General` / `Embedded Binaries` press `+`
+    - in `General` / `Frameworks, Libraries, and Embedded Content` press `+`
     - select `Unity-iPhone/Products/UnityFramework.framework`
-    - remove `UnityFramework.framework` from `Linked Frameworks and Libraries` ( select it and press `-` )
-    - in `Build Phases` move `Embedded Binaries` before `Compile Sources` ( drag and drop )
-    ![Example](https://forum.unity.com/attachments/image1-png.427024/)
-5.
+    - in `Build Phases` remove `UnityFramework.framework` from `Linked Frameworks and Libraries` ( select it and press `-` )
+    - in `Build Phases` move `Embedded Frameworks` before `Compile Sources` ( drag and drop )
+   
 Add following lines to your project `main.m` file (located at same folder with `AppDelegate`)
 ```objectivec
 #import <UIKit/UIKit.h>
@@ -77,14 +78,12 @@ Add following lines to your project `AppDelegate.m` file
 @end
 ```
 
-6. In `AppDelegate.m` file make background color of React root view transparent
-```objectivec
-rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:0];
-```
+### Android
 
-#### Android
+1. Create directory into ``android/app/libs``
 
-1. Add ndk support into `android/app/build.gradle`
+2. Copy libs from ``<project_name>/unity/builds/android/unityLibrary/libs/*`` to ``android/app/libs``
+3. Add ndk support into `android/app/build.gradle`
     ```gradle
     defaultConfig {
         ...
@@ -93,53 +92,114 @@ rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0
         }
     }
     ```
-2. Append the following lines to `android/settings.gradle`:
+4. Append the following lines to `android/settings.gradle`:
   	```gradle
   	include ':unityLibrary'
     project(':unityLibrary').projectDir=new File('..\\unity\\builds\\android\\unityLibrary')
   	```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
+5. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```gradle
       implementation project(':unityLibrary')
       implementation files("${project(':unityLibrary').projectDir}/libs/unity-classes.jar")
   	```
-4. Add strings to `res/values/strings.xml`
-    ```xml
+6. Add strings to ``res/values/strings.xml`` 
+    
+    ```javascript
     <string name="game_view_content_description">Game view</string>
     <string name="unity_root">unity_root</string>
     ```
-5. Update `.MainActivity` into `AndroidManifest.xml`
+
+6. Update `.MainActivity` into `AndroidManifest.xml`
     ```xml
-    <activity
+   <application
+      ...
+      android:extractNativeLibs="true" 
+   
+   <activity
       android:name=".MainActivity"
       ...
       android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
       android:hardwareAccelerated="true"
-      android:launchMode="singleTask"
     >
     ```
-6. Setup `minSdkVersion` greater than or equal to `19`
-7. Remove `<intent-filter>...</intent-filter>` from AndroidManifest.xml at unityLibrary to leave only integrated version. 
+7. Setup `minSdkVersion` greater than or equal to `21`
+   
+8. Remove `<intent-filter>...</intent-filter>` from ``<project_name>/unity/builds/android/unityLibrary/src/main/AndroidManifest.xml`` at unityLibrary to leave only integrated version.
+
+9. Add to ``android/gradle.properties`` 
+    ```javascript
+    unityStreamingAssets=.unity3d
+    ```
+
+10. Add to ``build.gradle``
+    ```javascript
+    allprojects {
+        repositories {
+            flatDir {
+                dirs "$rootDir/app/libs"
+            }
+    ```
+
+11. ``<project_name>/unity/builds/android/unityLibrary/src/main/AndroidManifest.xml`` 
+delete ``android:icon="@mipmap/app_icon"`` and ``android:theme="@style/UnityThemeSelector"`` if they are installed
 
 ## Usage
 
-### Android
 ```javascript
-import UnityView from 'react-native-unity-play';
+import { StyleSheet, View, Dimensions, Button, } from 'react-native';
+import UnityView, {
+  UnityModule,
+  UnityResponderView,
+} from 'react-native-unity-play';
 
-const App = () => {
-  return (
-    <UnityView style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0}} />
-  )
-}
-```
-### IOS
-```javascript
-import { UnityResponderView } from 'react-native-unity-play';
+const {width, height} = Dimensions.get('window');
 
-const App = () => {
+const App: () => Node = () => {
+  const [isVisible, setVisible] = useState(false);
+  let unityElement
+
+  if (Platform.OS === 'android') {
+    unityElement = (
+      <UnityView style={{flex: 1}} />
+    );
+  } else {
+    unityElement = (
+      <UnityResponderView
+        fullScreen={true}
+        style={{width: width, height: height}}
+      />
+    );
+  }
+
   return (
-    <UnityResponderView fullScreen={true} style={{width: viewWidth, height: viewHeight}}/>
-  )
-}
+    <View>
+        {!isVisible && (
+          <Button title={'Start'} onPress={() => setVisible(true)} />
+        )}
+        {isVisible && (
+          <>
+            {unityElement}
+            <View
+              style={{
+                position: 'absolute',
+                top: 45,
+                left: 20,
+                zIndex: 2,
+              }}>
+              <Button
+                title={'Close'}
+                onPress={() => {
+                  if (Platform.OS === 'android') {
+                    UnityModule.quit();
+                  }
+                  setVisible(false);
+                }}
+                style={{color: '#fff'}}
+              />
+            </View>
+          </>
+        )}
+    </View>
+  );
+};
 ```
