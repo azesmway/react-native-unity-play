@@ -1,6 +1,6 @@
 {
   "name": "react-native-unity-play",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React Native package to use Unity as library with React Native app",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,6 @@
     "react-native": "^0.64.1"
   },
   "dependencies": {
-    "event-target-shim": "^6.0.2",
     "xml2js": "^0.4.23"
   },
   "bugs": {

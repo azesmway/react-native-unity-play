@@ -12,6 +12,8 @@
 
 ### Before build project in Unity 
 
+### [UNITY VERSION >= 2020.x](https://unity3d.com/ru/get-unity/download/archive) 
+
 #### iOS
 UNITY PLAYER SETTINGS
 

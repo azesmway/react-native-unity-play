@@ -73,9 +73,7 @@ public class UnityReactActivity extends ReactActivity implements IUnityPlayerLif
        unityReceiver = receiver;
    }
 
-   protected void sendMessage(String message) {
-       // RNUnityModule.getInstance().sendEvent("UnityMessage", message);
-   }
+   protected void sendMessage(String message) {}
 
    public void unitySendHandshake() {
        if (unityReceiver != null) {
