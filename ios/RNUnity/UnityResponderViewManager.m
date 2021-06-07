@@ -14,11 +14,11 @@ RCT_EXPORT_MODULE(UnityResponderView)
     if(main != nil) {
         [main makeKeyAndVisible];
     }
-    
+
     return view;
 }
 
-RCT_EXPORT_VIEW_PROPERTY(fullScreen, bool)
+RCT_EXPORT_VIEW_PROPERTY(fullScreen, BOOL)
 
 @end
 
