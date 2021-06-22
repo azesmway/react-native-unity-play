@@ -10,6 +10,12 @@ export default class UnityResponderView extends React.Component {
         super(props);
     }
 
+    static postMessage(gameObject = '', functionName = '', message = '') {
+        if (gameObject !== '' && functionName !== '' && message !== '') {
+            RNUnity.postMessage(gameObject, functionName, message);
+        }
+    }
+
     public componentDidMount() {
         RNUnity.initialize();
     }

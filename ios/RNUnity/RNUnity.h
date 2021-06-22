@@ -35,6 +35,8 @@
 
 - (void)pause:(bool)pause;
 
+- (void)sendMessageToGOWithName:(const char*)goName functionName:(const char*)name message:(const char*)msg;
+
 @end
 
 
@@ -56,4 +58,4 @@ typedef void (*unity_receive_command)(const char *);
 + (void)sendMessage:(const char *)message;
 
 @end
-  
+

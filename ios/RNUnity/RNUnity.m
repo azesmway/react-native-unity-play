@@ -60,10 +60,10 @@ static id<RNUnityFramework> _RNUnity_ufw;
     NSString* bundlePath = nil;
     bundlePath = [[NSBundle mainBundle] bundlePath];
     bundlePath = [bundlePath stringByAppendingString: @"/Frameworks/UnityFramework.framework"];
-    
+
     NSBundle* bundle = [NSBundle bundleWithPath: bundlePath];
     if ([bundle isLoaded] == false) [bundle load];
-    
+
     id<RNUnityFramework> framework = [bundle.principalClass getInstance];
     if (![framework appController]) {
         // unity is not initialized
@@ -71,9 +71,9 @@ static id<RNUnityFramework> _RNUnity_ufw;
     }
     [framework setDataBundleId: [bundle.bundleIdentifier cStringUsingEncoding:NSUTF8StringEncoding]];
     [framework runEmbeddedWithArgc: self.argc argv: self.argv appLaunchOpts: applaunchOptions];
-            
+
     [self setUfw:framework];
-    
+
     return self.ufw;
 }
 
@@ -125,6 +125,15 @@ RCT_EXPORT_METHOD(invokeCommand:(NSString *)message) {
         if (_RNUnity_receiver_command) {
             _RNUnity_receiver_command([self toSharpString:message]);
         }
+    }
+}
+
+RCT_EXPORT_METHOD(postMessage:(nonnull NSString *)gameObject
+                  functionName:(nonnull NSString *)functionName
+                  message:(nonnull NSString *)message) {
+
+    if (_RNUnity_sharedInstance) {
+      [[RNUnity ufw] sendMessageToGOWithName:gameObject functionName:functionName message:message];
     }
 }
 
