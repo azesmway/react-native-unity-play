@@ -6,7 +6,7 @@
 ### I collected and modified the code that allows you to embed a UNITY project into the react native as a full-fledged component
 
 ### EXAMPLE
-[google drive](https://drive.google.com/file/d/1D3oaHstzlmIAvIqzbwfSTwlonxJev7Yh/view?usp=sharing)
+[GOOGLE DRIVE LINK](https://drive.google.com/file/d/1D3oaHstzlmIAvIqzbwfSTwlonxJev7Yh/view?usp=sharing)
 
 ## Getting started
 
