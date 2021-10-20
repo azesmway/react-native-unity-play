@@ -1,7 +1,7 @@
 
 # react-native-unity-play
 
-## Thanks to two projects [react-native-unity](https://github.com/@wowmaking/react-native-unity) and [react-native-unity-view](https://github.com/f111fei/react-native-unity-view)
+## Thanks to two projects [react-native-unity](https://github.com/wowmaking/react-native-unity) and [react-native-unity-view](https://github.com/f111fei/react-native-unity-view)
 
 ### I collected and modified the code that allows you to embed a UNITY project into the react native as a full-fledged component
 
