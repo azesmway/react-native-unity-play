@@ -1,4 +1,4 @@
-# [NEW VERSION IOS PLUGIN](https://github.com/azesmway/react-native-unity-play-ts)
+# [NEW VERSION IOS PLUGIN](https://github.com/azesmway/react-native-unity)
 
 
 # react-native-unity-play (This OLD version)
