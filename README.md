@@ -1,5 +1,7 @@
+# [NEW VERSION IOS PLUGIN](https://github.com/azesmway/react-native-unity-play-ts)
 
-# react-native-unity-play
+
+# react-native-unity-play (This OLD version)
 
 ## Thanks to two projects [react-native-unity](https://github.com/@wowmaking/react-native-unity) and [react-native-unity-view](https://github.com/f111fei/react-native-unity-view)
 
