@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0053E483231940930014F962 /* UnityResponderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053E482231940930014F962 /* UnityResponderView.m */; };
 		0053E4862319420A0014F962 /* UnityResponderViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053E4852319420A0014F962 /* UnityResponderViewManager.m */; };
+		7261D468277A43BA00D323AC /* UnityNativeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7261D467277A43BA00D323AC /* UnityNativeModule.m */; };
+		7261D46B277A43FD00D323AC /* UnityUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7261D46A277A43FD00D323AC /* UnityUtils.mm */; };
 		B3E7B58A1CC2AC0600A0062D /* RNUnity.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNUnity.m */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,10 @@
 		0053E4852319420A0014F962 /* UnityResponderViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnityResponderViewManager.m; sourceTree = "<group>"; };
 		0053E4872319422D0014F962 /* UnityResponderViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnityResponderViewManager.h; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libRNUnity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNUnity.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7261D466277A438500D323AC /* UnityNativeModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnityNativeModule.h; sourceTree = "<group>"; };
+		7261D467277A43BA00D323AC /* UnityNativeModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnityNativeModule.m; sourceTree = "<group>"; };
+		7261D469277A43E800D323AC /* UnityUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnityUtils.h; sourceTree = "<group>"; };
+		7261D46A277A43FD00D323AC /* UnityUtils.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UnityUtils.mm; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNUnity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNUnity.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNUnity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNUnity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,6 +62,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				7261D46A277A43FD00D323AC /* UnityUtils.mm */,
+				7261D469277A43E800D323AC /* UnityUtils.h */,
+				7261D466277A438500D323AC /* UnityNativeModule.h */,
+				7261D467277A43BA00D323AC /* UnityNativeModule.m */,
 				0053E4872319422D0014F962 /* UnityResponderViewManager.h */,
 				0053E4852319420A0014F962 /* UnityResponderViewManager.m */,
 				0053E4842319410E0014F962 /* UnityResponderView.h */,
@@ -105,6 +115,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -122,9 +133,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7261D468277A43BA00D323AC /* UnityNativeModule.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNUnity.m in Sources */,
 				0053E4862319420A0014F962 /* UnityResponderViewManager.m in Sources */,
 				0053E483231940930014F962 /* UnityResponderView.m in Sources */,
+				7261D46B277A43FD00D323AC /* UnityUtils.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
